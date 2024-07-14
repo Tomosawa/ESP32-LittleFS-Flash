@@ -1,0 +1,49 @@
+{
+  "name": "esp32-littlefs-flash",
+  "version": "1.0.0",
+  "description": "LittleFS partition data flash tool for esp32 chip",
+  "main": "./out/main/index.js",
+  "author": "Tomosawa",
+  "homepage": "https://electron-vite.org",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.0",
+    "@electron-toolkit/utils": "^3.0.0",
+    "@mdi/font": "^7.4.47",
+    "child_process": "^1.0.2",
+    "i18next": "^23.11.5",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-vue": "^4.0.0",
+    "mdi": "^2.2.43",
+    "serialport": "^12.0.0",
+    "vue-i18next": "^0.9.4",
+    "vue-router": "^4.4.0"
+  },
+  "devDependencies": {
+    "@electron-toolkit/eslint-config": "^1.0.1",
+    "@rushstack/eslint-patch": "^1.6.1",
+    "@vitejs/plugin-vue": "^5.0.3",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1",
+    "electron-vite": "^2.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.20.1",
+    "prettier": "^3.2.4",
+    "vite": "^5.0.12",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue": "^3.4.15",
+    "vuetify": "^3.6.9"
+  }
+}
