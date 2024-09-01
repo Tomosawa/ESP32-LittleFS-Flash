@@ -3,13 +3,15 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 const { SerialPort } = require('serialport');
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    minWidth: 900,
+    minHeight: 670,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -66,41 +68,73 @@ app.whenReady().then(() => {
   ipcMain.handle('request-serial-ports', (event) => {
       return SerialPort.list();
     });
-  // 接收来自渲染进程的命令请求并执行命令
+
   ipcMain.on('run-command', (event, command) => {
     console.log('ipcMain Run Command');
-    let appPath;
+    let esptoolPath, mklittlefsPath;
     if (process.platform === 'win32') {
-      appPath = join(__dirname, '..', 'resources', 'windows', 'esptool.exe');
+      esptoolPath = join(__dirname, "../../resources/win32/esptool.exe").replace("app.asar", "app.asar.unpacked");
+      mklittlefsPath = join(__dirname, "../../resources/win32/mklittlefs.exe").replace("app.asar", "app.asar.unpacked");
     } else if (process.platform === 'darwin') {
-      appPath = join(__dirname, '..', 'resources', 'macos', 'esptool');
+      esptoolPath = join(__dirname, "../../resources/darwin/esptool").replace("app.asar", "app.asar.unpacked");
+      mklittlefsPath = join(__dirname, "../../resources/darwin/mklittlefs").replace("app.asar", "app.asar.unpacked");
     } else if (process.platform === 'linux') {
-      appPath = join(__dirname, '..', 'resources', 'linux', 'esptool');
+      esptoolPath = join(__dirname, "../../resources/linux/esptool").replace("app.asar", "app.asar.unpacked");
+      mklittlefsPath = join(__dirname, "../../resources/linux/mklittlefs").replace("app.asar", "app.asar.unpacked");
     } else {
       console.log('Unknown platform:', platform);
+      event.sender.send('command-output', 'Unknown platform:' + platform)
+      return;
     }
-    console.log(appPath);
-    exec(appPath, (error, stdout, stderr) => {
-      if (error) {
-        event.sender.send('command-output', `Error: ${error.message}`)
-        return
+    process.stdout.write(esptoolPath + "\n");
+    process.stdout.write(mklittlefsPath + "\n");
+
+    event.sender.send('command-output', 'Start packaging files for the LittleFS partition.\n')
+    const littlefsexe = spawn(mklittlefsPath, command.mklittlefs, { shell: true });//mklittlefsPath + command.mklittlefs);
+
+    littlefsexe.stdout.on('data', (data) => {
+      event.sender.send('command-output', `${data}`);
+    });
+
+    littlefsexe.stderr.on('data', (data) => {
+      event.sender.send('command-output', `${data}`);
+    });
+
+    littlefsexe.on('error', (error) => {
+      event.sender.send('command-output', `Error: ${error.message}\nError Code:${error.code}\nSignal Received: ${error.signal}`);
+    });
+
+    littlefsexe.on('close', (code) => {
+      if (code !== 0) {
+        event.sender.send('command-output', `Process exited with code ${code}`);
       }
-      if (stderr) {
-        event.sender.send('command-output', `stderr: ${stderr}`)
-        return
+      else
+      {
+        event.sender.send('command-output', 'Packing completed.\n\nStarting the flashing process for the image file.')
+        const esptoolexe = spawn(esptoolPath, command.esptool, { shell: true });
+
+        esptoolexe.stdout.on('data', (data) => {
+          event.sender.send('command-output', `${data}`);
+        });
+
+        esptoolexe.stderr.on('data', (data) => {
+          event.sender.send('command-output', `${data}`);
+        });
+
+        esptoolexe.on('error', (error) => {
+          event.sender.send('command-output', `Error: ${error.message}\nError Code:${error.code}\nSignal Received: ${error.signal}`);
+        });
+
+        esptoolexe.on('close', (code) => {
+          if (code !== 0) {
+            event.sender.send('command-output', `Process exited with code ${code}`);
+          }
+        });
       }
-      event.sender.send('command-output', stdout)
-    })
-  });
-  ipcMain.handle('runexe-flash', (event)=>{
-    exec('echo "Hello, Electron!"', { stdio: 'inherit' }, (error, stdout, stderr) => {
-        if (error) {
-          return;
-        }
-        return stdout;
-        //win.webContents.send('output', stdout);
     });
   });
+
+
   createWindow()
 
   app.on('activate', function () {

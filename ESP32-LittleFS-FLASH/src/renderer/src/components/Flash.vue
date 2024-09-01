@@ -11,7 +11,6 @@
               <div class="terminal-output" ref="terminalOut">{{ terminal }}</div>
             </v-card-text>
           </v-card>
-  <!-- <v-textarea variant="solo" bg-color="black" :model-value="terminal" readonly class="rounded-xl"></v-textarea> -->
   <v-btn
     class="text-none text-black mb-4"
     color="error"
@@ -30,14 +29,31 @@
 
 export default {
   data: () => ({
-    terminal: 'Init execution',
+    terminal: 'Running command...\n',
   }),
   mounted(){
-    const command = 'ifconfig' // 替换为你要执行的命令
+    const folderPath = this.$route.query.FolderPath;
+    const flashPort = this.$route.query.FlashPort;
+    const flashSpeed = this.$route.query.FlashSpeed;
+    const chipType = this.$route.query.ChipType;
+    const imageSize = this.$route.query.ImageSize;
+    const flashOffset = this.$route.query.FlashOffset;
+
+    console.log('folderPath:', folderPath);
+    console.log('flashPort:',flashPort);
+    console.log('flashSpeed:', flashSpeed);
+    console.log('chipType:', chipType);
+    console.log('imageSize:', imageSize);
+    console.log('flashOffset:', flashOffset);
+
+    const command = {
+      mklittlefs:['-c',`${folderPath}`,'-s', `${imageSize}`, `${folderPath}.bin`],
+      esptool:['--chip', `${chipType}`, '--port', `${flashPort}`, '--baud', `${flashSpeed}`, 'write_flash', `${flashOffset}`, `${folderPath}.bin`]
+    }
     window.electronCmd.runCommand(command);
     console.log('run command exec');
     window.electronCmd.onCommandOutput((event, output) => {
-      this.terminal = output;
+      this.terminal += output;
       this.scrollToBottom();
     })
   },

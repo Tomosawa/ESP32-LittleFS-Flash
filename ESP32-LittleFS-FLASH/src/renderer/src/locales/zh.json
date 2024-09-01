@@ -1,6 +1,6 @@
 {
   "Title": "ESP32-LITTLEFS-FLASH",
-  "Introduce": "本工具用于选择某个文件夹并以LittleFS分区格式烧录到ESP32芯片中。",
+  "Introduce": "专为ESP32芯片打造的LittleFS分区数据烧录工具。",
   "FolderPath": "数据文件夹路径",
   "FolderPathButton": "选择文件夹",
   "Port": "烧录端口",
@@ -9,5 +9,6 @@
   "PartitionOffset":"烧录地址",
   "FlashButton":"开始烧录",
   "RequiredField":"不能为空",
-  "BackButton":"返回"
+  "BackButton":"返回",
+  "Chip":"芯片类型"
 }

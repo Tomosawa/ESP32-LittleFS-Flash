@@ -1,6 +1,6 @@
 {
   "Title": "ESP32-LITTLEFS-FLASH",
-  "Introduce": "This tool is used to select a folder and flash it to the ESP32 chip in the LittleFS partition format.",
+  "Introduce": "A Simple and Easy-to-Use Data Flashing Tool for ESP32 Chip LittleFS Partitions.",
   "FolderPath": "FOLDER PATH",
   "FolderPathButton": "SELECT FOLDER",
   "Port": "PORT",
@@ -9,5 +9,6 @@
   "PartitionOffset":"OFFSET",
   "FlashButton":"START FLASH",
   "RequiredField":"Required",
-  "BackButton":"Back"
+  "BackButton":"Back",
+  "Chip":"CHIP"
 }
