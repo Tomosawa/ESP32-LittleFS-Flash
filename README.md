@@ -26,7 +26,7 @@ ESP32-LittleFS-Flash is a cross-platform tool for flashing LittleFS partitions o
 ## Requirements
 
 - ESP32 development board.
-- Support Chip: esp8266,esp32,esp32s2,esp32s3beta2,esp32s3,esp32c3,esp32c6beta,esp32h2beta1,esp32h2beta2,esp32c2,esp32c6,esp32h2,esp32p4
+- Supported chips: esp8266,esp32,esp32s2,esp32s3beta2,esp32s3,esp32c3,esp32c6beta,esp32h2beta1,esp32h2beta2,esp32c2,esp32c6,esp32h2,esp32p4
 
 ## Installation
 
