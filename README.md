@@ -26,6 +26,7 @@ ESP32-LittleFS-Flash is a cross-platform tool for flashing LittleFS partitions o
 ## Requirements
 
 - ESP32 development board.
+- Support Chip: esp8266,esp32,esp32s2,esp32s3beta2,esp32s3,esp32c3,esp32c6beta,esp32h2beta1,esp32h2beta2,esp32c2,esp32c6,esp32h2,esp32p4
 
 ## Installation
 
@@ -60,6 +61,7 @@ Configuration options are available directly in the software interface, includin
 
 - `FOLDER PATH`: The folder to be flashed.
 - `PORT`: The serial port for flashing.
+- `CHIP`: The ESP32 chip type.
 - `FLASH SPEED`: The baud rate for the flashing communication.
 - `SIZE`: The size of the LittleFS partition to be flashed. Ensure the folder size does not exceed the partition size.
 - `OFFSET`: The offset address for the LittleFS partition to be flashed.

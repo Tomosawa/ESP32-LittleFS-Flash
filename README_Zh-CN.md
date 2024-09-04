@@ -1,7 +1,7 @@
 # ESP32-LittleFS-Flash
 *Read this in [English](README.md).*
 
-![](images/ScreenShot.png)
+![](images/ScreenShot_Zh-CN.png)
 ESP32-LittleFS-Flash 是一个用于将 LittleFS 分区烧录到 ESP32 芯片上的跨平台工具。该工具具有图形化的界面
 使烧录过程更加简便，只需选择一个文件夹即可进行烧录操作。
 
@@ -27,6 +27,7 @@ ESP32-LittleFS-Flash 是一个用于将 LittleFS 分区烧录到 ESP32 芯片上
 ## 需求
 
 - ESP32 开发板。
+- 支持芯片型号esp8266,esp32,esp32s2,esp32s3beta2,esp32s3,esp32c3,esp32c6beta,esp32h2beta1,esp32h2beta2,esp32c2,esp32c6,esp32h2,esp32p4
 
 ## 安装
 
@@ -61,6 +62,7 @@ ESP32-LittleFS-Flash 是一个用于将 LittleFS 分区烧录到 ESP32 芯片上
 
 - `FOLDER PATH`：需要烧录的文件夹，里面存放对应的文件。
 - `PORT`：选择要烧录的串行端口。
+- `CHIP`: 选择您的芯片型号。
 - `FLASH SPEED`：选择烧录的通信的波特率。
 - `SIZE`：烧录LittleFS分区的大小，注意选择的文件夹大小不可超过分区大小。
 - `OFFSET`：烧录的LittleFS分区偏移地址。
@@ -108,6 +110,8 @@ npm run dev
 发布中包含的二进制文件来自以下项目：
 - [esptool](https://github.com/espressif/esptool)
 - [mklittlefs](https://github.com/earlephilhower/mklittlefs)
+
+感谢这些项目的贡献。
 
 ---
 
