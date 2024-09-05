@@ -17,6 +17,7 @@
 [English](README.md) | 简体中文
 
 </div>
+
 ![screenshot](images/ScreenShot_Zh-CN.png)
 ESP32-LittleFS-Flash 是一个用于将 LittleFS 分区烧录到 ESP32 芯片上的跨平台工具。该工具具有图形化的界面
 使烧录过程更加简便，只需选择一个文件夹即可进行烧录操作。
