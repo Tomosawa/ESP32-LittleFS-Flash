@@ -1,7 +1,24 @@
-# ESP32-LittleFS-Flash
-*Read this in [简体中文](README_Zh-CN.md).*
+<div id="top">
+<p align="center">
+  <img src="ESP32-LittleFS-FLASH/resources/icon.png" width="56px" style="vertical-align:middle;display: inline-block;">
 
-![](images/ScreenShot.png)
+  <h1 align="center">ESP32-LittleFS-Flash</h1>
+</p>
+</div>
+<div align="center">
+
+[![stars](https://img.shields.io/github/stars/Tomosawa/ESP32-LittleFS-Flash.svg)](https://github.com/Tomosawa/ESP32-LittleFS-Flash)
+[![forks](https://img.shields.io/github/forks/Tomosawa/ESP32-LittleFS-Flash.svg)](https://github.com/Tomosawa/ESP32-LittleFS-Flash)
+[![open issues](https://img.shields.io/github/issues-raw/Tomosawa/ESP32-LittleFS-Flash.svg)](https://github.com/Tomosawa/ESP32-LittleFS-Flash/issues)
+[![issue resolution](https://img.shields.io/github/issues-closed-raw/Tomosawa/ESP32-LittleFS-Flash.svg)](https://github.com/Tomosawa/ESP32-LittleFS-Flash/issues)
+[![GitHub contributors](https://img.shields.io/github/contributors/Tomosawa/ESP32-LittleFS-Flash)](https://github.com/Tomosawa/ESP32-LittleFS-Flash/graphs/contributors)
+[![LICENSE](https://img.shields.io/github/license/Tomosawa/ESP32-LittleFS-Flash)](https://github.com/Tomosawa/ESP32-LittleFS-Flash/blob/master/LICENSE)
+
+English | [简体中文](README_Zh-CN.md) 
+
+</div>
+
+![screenshot](images/ScreenShot.png)
 ESP32-LittleFS-Flash is a cross-platform tool for flashing LittleFS partitions onto ESP32 chips. This tool features a graphical interface that simplifies the flashing process by allowing you to select a folder for flashing.
 
 ## Table of Contents
@@ -34,7 +51,7 @@ ESP32-LittleFS-Flash is a cross-platform tool for flashing LittleFS partitions o
 2. Extract the downloaded files.
 3. Run the extracted executable file.
 
-### Usage
+## Usage
 
 1. Connect the ESP32 development board to your computer.
 2. Open the ESP32-LittleFS-Flash application.
